@@ -9,4 +9,5 @@ public interface ProductService {
     Product updateProduct(Product product, long productId);
     boolean deleteProduct(long productId);
     List<Product> getAllProducts();
+    List<Product> getAvailableProducts();
 }

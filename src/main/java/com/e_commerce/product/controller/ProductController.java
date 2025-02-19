@@ -57,6 +57,12 @@ public class ProductController {
     @GetMapping("/display-all-products")
     public ResponseEntity<?> displayProducts() {
         List<Product> products = productService.getAllProducts();
-        return ResponseEntity.status(HttpStatus.OK).body(products);
+        return ResponseEntity.status(HttpStatus.FOUND).body(products);
+    }
+
+    @GetMapping("/display-all-available-products")
+    public ResponseEntity<?> displayAvailableProducts() {
+        List<Product> products = productService.getAvailableProducts();
+        return ResponseEntity.status(HttpStatus.FOUND).body(products);
     }
 }
