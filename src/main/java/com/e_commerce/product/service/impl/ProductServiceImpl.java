@@ -14,4 +14,16 @@ public class ProductServiceImpl implements ProductService {
     public Product addProduct(Product product) {
         return productRepository.save(product);
     }
+
+    @Override
+    public Product updateProduct(Product product, long productId) {
+        Product oldProduct = productRepository.findProductById(productId);
+        oldProduct.setName(product.getName());
+        oldProduct.setDescription(product.getDescription());
+        oldProduct.setPrice(product.getPrice());
+        oldProduct.setQuantity(product.getQuantity());
+        oldProduct.setIsAvailable(product.getIsAvailable());
+        oldProduct.setImages(product.getImages());
+        return productRepository.save(oldProduct);
+    }
 }

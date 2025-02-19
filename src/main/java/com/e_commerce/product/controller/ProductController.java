@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,5 +33,18 @@ public class ProductController {
         Product product = productMapper.toEntity(productDTO);
         Product savedProduct = productService.addProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedProduct);
+    }
+
+    @PutMapping("/update-product/{productId}")
+    public ResponseEntity<?> updateProduct(@RequestBody ProductDTO productDTO, BindingResult result, @PathVariable Long productId) {
+        if (result.hasErrors()) {
+            List<String> errors = result.getFieldErrors().stream()
+                    .map(error -> error.getField() + ": " + error.getDefaultMessage())
+                    .collect(Collectors.toList());
+            return ResponseEntity.badRequest().body(errors);
+        }
+        Product product = productMapper.toEntity(productDTO);
+        Product updatedProduct = productService.updateProduct(product, productId);
+        return ResponseEntity.status(HttpStatus.OK).body(updatedProduct);
     }
 }

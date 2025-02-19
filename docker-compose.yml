@@ -1,7 +1,7 @@
 version: '3.9'
 
 services:
-  userManagementDB:
+  productManagementDB:
     image: postgres:latest
     ports:
       - "5433:5432"
