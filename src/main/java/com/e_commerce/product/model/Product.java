@@ -23,7 +23,7 @@ public class Product {
     private String description;
     private double price;
     private int quantity;
-    private boolean isAvailable;
+    private Boolean isAvailable;
 
     @ElementCollection
     @CollectionTable(name = "images", joinColumns = @JoinColumn(name = "product_id"))
