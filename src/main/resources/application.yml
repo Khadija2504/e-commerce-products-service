@@ -15,4 +15,4 @@ spring:
     config:
         enabled: false
 server:
-  port: 9800
+  port: 9700
