@@ -10,4 +10,5 @@ import java.util.List;
 public interface ProductRepository extends JpaRepository<Product, Long> {
     Product findProductById(Long id);
     List<Product> findProductByIsAvailable(boolean available);
+    List<Product> findProductByName(String name);
 }
