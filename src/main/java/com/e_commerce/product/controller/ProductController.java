@@ -71,4 +71,10 @@ public class ProductController {
         Product product = productService.getProduct(productId);
         return ResponseEntity.status(HttpStatus.FOUND).body(product);
     }
+
+    @GetMapping("/search-for-product/{productName}")
+    public ResponseEntity<?> searchProduct(@PathVariable String productName) {
+        List<Product> products = productService.getProduct(productName);
+        return ResponseEntity.status(HttpStatus.FOUND).body(products);
+    }
 }
