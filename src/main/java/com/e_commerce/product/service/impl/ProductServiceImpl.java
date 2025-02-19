@@ -48,4 +48,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getAvailableProducts() {
         return productRepository.findProductByIsAvailable(true);
     }
+
+    @Override
+    public Product getProduct(long productId) {
+        return productRepository.findProductById(productId);
+    }
 }
