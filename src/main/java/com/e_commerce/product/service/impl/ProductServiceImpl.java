@@ -26,4 +26,16 @@ public class ProductServiceImpl implements ProductService {
         oldProduct.setImages(product.getImages());
         return productRepository.save(oldProduct);
     }
+
+    @Override
+    public boolean deleteProduct(long productId) {
+        Product product = productRepository.findProductById(productId);
+        if (product != null) {
+            productRepository.delete(product);
+            return true;
+        }
+        return false;
+    }
+
+
 }
