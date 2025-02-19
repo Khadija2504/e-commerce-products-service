@@ -53,4 +53,10 @@ public class ProductController {
         boolean isDeleted = productService.deleteProduct(productId);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body("product deleted: " + isDeleted);
     }
+
+    @GetMapping("/display-all-products")
+    public ResponseEntity<?> displayProducts() {
+        List<Product> products = productService.getAllProducts();
+        return ResponseEntity.status(HttpStatus.OK).body(products);
+    }
 }
